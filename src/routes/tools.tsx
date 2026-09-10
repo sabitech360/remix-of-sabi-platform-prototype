@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useMatchRoute } from "@tanstack/react-router";
 import {
   Stethoscope,
   Layers,
@@ -85,6 +85,13 @@ const groups: Group[] = [
 
 
 function ToolsPage() {
+  const matchRoute = useMatchRoute();
+  const isToolDetail = matchRoute({ to: "/tools/$slug", fuzzy: true });
+
+  if (isToolDetail) {
+    return <Outlet />;
+  }
+
   return (
     <AppShell>
       <div className="px-4 lg:px-8 py-8 lg:py-10 max-w-6xl mx-auto">

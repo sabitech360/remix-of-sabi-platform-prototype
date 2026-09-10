@@ -10,6 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as SsoCallbackRouteImport } from './routes/sso-callback'
+import { Route as SignUpRouteImport } from './routes/sign-up'
+import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as RecommendationsRouteImport } from './routes/recommendations'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
@@ -25,6 +28,21 @@ import { Route as JobsIdApplyRouteImport } from './routes/jobs.$id.apply'
 const ToolsRoute = ToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SsoCallbackRoute = SsoCallbackRouteImport.update({
+  id: '/sso-callback',
+  path: '/sso-callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignUpRoute = SignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecommendationsRoute = RecommendationsRouteImport.update({
@@ -92,6 +110,9 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/recommendations': typeof RecommendationsRouteWithChildren
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/sso-callback': typeof SsoCallbackRoute
   '/tools': typeof ToolsRouteWithChildren
   '/recommendations/refer': typeof RecommendationsReferRoute
   '/tools/$slug': typeof ToolsSlugRoute
@@ -106,6 +127,9 @@ export interface FileRoutesByTo {
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/recommendations': typeof RecommendationsRouteWithChildren
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/sso-callback': typeof SsoCallbackRoute
   '/tools': typeof ToolsRouteWithChildren
   '/recommendations/refer': typeof RecommendationsReferRoute
   '/tools/$slug': typeof ToolsSlugRoute
@@ -121,6 +145,9 @@ export interface FileRoutesById {
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/recommendations': typeof RecommendationsRouteWithChildren
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/sso-callback': typeof SsoCallbackRoute
   '/tools': typeof ToolsRouteWithChildren
   '/recommendations/refer': typeof RecommendationsReferRoute
   '/tools/$slug': typeof ToolsSlugRoute
@@ -137,6 +164,9 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/recommendations'
+    | '/sign-in'
+    | '/sign-up'
+    | '/sso-callback'
     | '/tools'
     | '/recommendations/refer'
     | '/tools/$slug'
@@ -151,6 +181,9 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/recommendations'
+    | '/sign-in'
+    | '/sign-up'
+    | '/sso-callback'
     | '/tools'
     | '/recommendations/refer'
     | '/tools/$slug'
@@ -165,6 +198,9 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/recommendations'
+    | '/sign-in'
+    | '/sign-up'
+    | '/sso-callback'
     | '/tools'
     | '/recommendations/refer'
     | '/tools/$slug'
@@ -180,6 +216,9 @@ export interface RootRouteChildren {
   OnboardingRoute: typeof OnboardingRoute
   ProfileRoute: typeof ProfileRoute
   RecommendationsRoute: typeof RecommendationsRouteWithChildren
+  SignInRoute: typeof SignInRoute
+  SignUpRoute: typeof SignUpRoute
+  SsoCallbackRoute: typeof SsoCallbackRoute
   ToolsRoute: typeof ToolsRouteWithChildren
 }
 
@@ -190,6 +229,27 @@ declare module '@tanstack/react-router' {
       path: '/tools'
       fullPath: '/tools'
       preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sso-callback': {
+      id: '/sso-callback'
+      path: '/sso-callback'
+      fullPath: '/sso-callback'
+      preLoaderRoute: typeof SsoCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recommendations': {
@@ -313,6 +373,9 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingRoute: OnboardingRoute,
   ProfileRoute: ProfileRoute,
   RecommendationsRoute: RecommendationsRouteWithChildren,
+  SignInRoute: SignInRoute,
+  SignUpRoute: SignUpRoute,
+  SsoCallbackRoute: SsoCallbackRoute,
   ToolsRoute: ToolsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
