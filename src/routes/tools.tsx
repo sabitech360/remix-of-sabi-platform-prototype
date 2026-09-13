@@ -7,11 +7,9 @@ import {
   Lightbulb,
   Hammer,
   PencilRuler,
-  ClipboardCheck,
   GraduationCap,
   MessageSquareHeart,
   Compass,
-  Wand2,
   ArrowUpRight,
   Sparkles,
   type LucideIcon,
@@ -22,7 +20,7 @@ export const Route = createFileRoute("/tools")({
   head: () => ({
     meta: [
       { title: "Your Co-Teacher — SABI Studio" },
-      { name: "description", content: "12 AI tools that help you plan, teach, assess and grow as a teacher." },
+      { name: "description", content: "10 AI tools that help you plan, teach, assess and grow as a teacher." },
     ],
   }),
   component: ToolsPage,
@@ -68,7 +66,6 @@ const groups: Group[] = [
     caption: "Give students practice, measure progress, and grade fairly.",
     tools: [
       { slug: "sabi-exercise", name: "Sabi Exercise", desc: "Worksheets and practice sheets, ready to print.",     icon: PencilRuler,        gradient: "radial-gradient(110% 80% at 80% 50%, oklch(0.2 0.04 240) 0%, transparent 55%), linear-gradient(120deg, oklch(0.88 0.06 220) 0%, oklch(0.7 0.14 220) 45%, oklch(0.45 0.13 230) 80%, oklch(0.2 0.04 240) 100%)" },
-      { slug: "sabi-check",    name: "Sabi Check",    desc: "Quick formative assessments that surface gaps.",      icon: ClipboardCheck,     gradient: "radial-gradient(120% 80% at 80% 50%, oklch(0.12 0.02 30) 0%, transparent 55%), linear-gradient(110deg, oklch(0.85 0.06 30) 0%, oklch(0.72 0.2 25) 35%, oklch(0.55 0.2 15) 65%, oklch(0.18 0.04 25) 100%)" },
       { slug: "sabi-grade",    name: "Sabi Grade",    desc: "Fair, consistent rubrics and grading systems.",       icon: GraduationCap,      gradient: "radial-gradient(120% 80% at 75% 45%, oklch(0.1 0.02 30) 0%, transparent 55%), linear-gradient(115deg, oklch(0.92 0.03 80) 0%, oklch(0.75 0.18 60) 30%, oklch(0.55 0.2 40) 60%, oklch(0.15 0.03 30) 100%)" },
       { slug: "sabi-feedback", name: "Sabi Feedback", desc: "Personalised, growth-oriented student feedback.",     icon: MessageSquareHeart, gradient: "radial-gradient(120% 90% at 85% 50%, oklch(0.16 0.03 220) 0%, transparent 55%), linear-gradient(115deg, oklch(0.94 0.03 200) 0%, oklch(0.72 0.14 200) 40%, oklch(0.48 0.13 215) 75%, oklch(0.2 0.04 225) 100%)" },
     ],
@@ -78,7 +75,6 @@ const groups: Group[] = [
     caption: "Reflect on your practice and shape new ideas.",
     tools: [
       { slug: "sabi-reflect", name: "Sabi Reflect", desc: "Structured reflection to grow professionally.", icon: Compass, gradient: "linear-gradient(115deg, oklch(0.92 0.04 280) 0%, oklch(0.8 0.08 260) 35%, oklch(0.75 0.09 230) 65%, oklch(0.85 0.06 320) 100%)" },
-      { slug: "sabi-craft",   name: "Sabi Craft",   desc: "Open workspace to turn ideas into materials.",  icon: Wand2,   gradient: "radial-gradient(120% 80% at 80% 50%, oklch(0.15 0.04 280) 0%, transparent 55%), linear-gradient(120deg, oklch(0.88 0.05 280) 0%, oklch(0.7 0.14 285) 40%, oklch(0.45 0.16 290) 75%, oklch(0.2 0.05 285) 100%)" },
     ],
   },
 ];
@@ -109,7 +105,7 @@ function ToolsPage() {
             <p className="text-sm font-medium opacity-80">Good morning, Foday 👋</p>
             <h1 className="mt-2 text-3xl lg:text-4xl font-bold tracking-tight">What are we teaching today?</h1>
             <p className="mt-3 max-w-xl opacity-90 text-sm lg:text-base">
-              Your Co-Teacher has <span className="font-semibold">12 tools</span> to help you plan, teach, assess and grow — pick one to get started.
+              Your Co-Teacher has <span className="font-semibold">10 tools</span> to help you plan, teach, assess and grow — pick one to get started.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               <Link to="/tools/$slug" params={{ slug: "sabi-lesson-plan" }} className="inline-flex items-center gap-2 bg-white text-primary px-4 py-2.5 rounded-full text-sm font-semibold hover:bg-white/90 transition-colors">
@@ -184,7 +180,7 @@ function ToolsPage() {
             {[
               { title: "Photosynthesis — JSS1 Biology slide deck", time: "2 hours ago", tag: "Sabi Slides" },
               { title: "Multi-step Fractions — Primary 5 Maths (Big Market edition)", time: "Yesterday", tag: "Sabi Lesson Plan" },
-              { title: "Narrative Tenses Quiz — JSS2 English", time: "2 days ago", tag: "Sabi Check" },
+              { title: "Narrative Tenses Quiz — JSS2 English", time: "2 days ago", tag: "Sabi Exercise" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4 px-5 py-4 hover:bg-muted/40 transition-colors first:rounded-t-2xl last:rounded-b-2xl">
                 <div className="size-10 rounded-lg bg-primary-soft text-primary grid place-items-center shrink-0">

@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import {
   MessageSquareHeart,
   Sparkles,
-  Store,
   Briefcase,
   User,
   Bell,
@@ -22,7 +21,6 @@ const sabiTeach: NavItem[] = [
 ];
 
 const sabiEarn: NavItem[] = [
-  { to: "/marketplace", label: "Marketplace", icon: Store },
   { to: "/jobs", label: "Opportunities", icon: Briefcase },
   { to: "/applications", label: "Applications", icon: FileCheck2 },
   { to: "/recommendations", label: "Recommendations", icon: Heart },
@@ -100,18 +98,6 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Link>
           </div>
         </nav>
-
-        <div
-          className="mt-auto rounded-2xl p-5 text-primary-foreground"
-          style={{ background: "var(--gradient-teal)", boxShadow: "var(--shadow-teal)" }}
-        >
-          <p className="text-xs font-semibold uppercase tracking-wider opacity-80">SABI Earn</p>
-          <p className="mt-2 text-2xl font-bold">Le 4,250,000</p>
-          <p className="text-xs opacity-80 mt-1">Available balance</p>
-          <button className="mt-4 w-full rounded-lg bg-white/15 hover:bg-white/25 transition-colors text-sm font-semibold py-2">
-            Withdraw
-          </button>
-        </div>
       </aside>
 
       {/* Main area */}
