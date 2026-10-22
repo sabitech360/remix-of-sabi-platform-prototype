@@ -3,7 +3,9 @@ import { ArrowLeft, Sparkles, Send, Download, Paperclip } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { useState, useRef, useEffect } from "react";
 import { ReportDocument } from "@/components/ReportDocument";
-const API_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "") || "http://127.0.0.1:8000";
+const API_URL =
+  (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "") ??
+  (import.meta.env.DEV ? "http://127.0.0.1:8000" : "");
 
 export const Route = createFileRoute("/tools/$slug")({
   head: () => ({
