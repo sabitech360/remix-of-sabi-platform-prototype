@@ -100,3 +100,64 @@
   em, i { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
 }
 
+
+/* ───────────── SABI report (on-screen paper + A4 PDF) ───────────── */
+.sabi-paper {
+  background: #fff;
+  color: #1a1a1a;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  padding: 32px 36px;
+}
+.sabi-measure {
+  position: absolute;
+  left: -10000px;
+  top: 0;
+  width: 794px; /* A4 width at 96dpi */
+  padding: 0 53px; /* 14mm side margins */
+  visibility: hidden;
+  pointer-events: none;
+}
+#sabi-print-root { display: none; }
+
+.sabi-report { font-size: 10.5pt; line-height: 1.5; color: #1a1a1a; }
+.sabi-report-head {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+  padding-bottom: 10px; border-bottom: 3px solid var(--primary);
+}
+.sabi-report-brand { font-size: 9pt; font-weight: 800; letter-spacing: .2em; color: var(--primary); }
+.sabi-report-title { font-size: 19pt; font-weight: 800; line-height: 1.15; margin-top: 2px; }
+.sabi-report-teacher { text-align: right; font-size: 9pt; color: #555; line-height: 1.4; }
+.sabi-report-name { font-size: 11pt; font-weight: 700; color: #1a1a1a; }
+.sabi-report-meta {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 6px 14px;
+  margin: 10px 0 4px; padding: 8px 10px; background: #f4f6f4; border-radius: 6px;
+}
+.sabi-report-meta dt { font-size: 7.5pt; text-transform: uppercase; letter-spacing: .08em; color: #777; }
+.sabi-report-meta dd { font-size: 9.5pt; font-weight: 600; }
+.sabi-report-content { margin-top: 10px; }
+.sabi-report-content h1, .sabi-report-content h2 {
+  font-size: 12.5pt; font-weight: 800; margin: 14px 0 5px; padding: 3px 0 3px 9px;
+  border-left: 4px solid var(--primary); background: #f4f6f4; break-after: avoid;
+}
+.sabi-report-content h3 { font-size: 10.5pt; font-weight: 700; margin: 10px 0 3px; color: var(--primary); break-after: avoid; }
+.sabi-report-content p { margin: 4px 0; }
+.sabi-report-content ul, .sabi-report-content ol { margin: 4px 0 4px 18px; }
+.sabi-report-content ul { list-style: disc; }
+.sabi-report-content ol { list-style: decimal; }
+.sabi-report-content li { margin: 1px 0; }
+.sabi-report-content strong { font-weight: 700; }
+.sabi-report-content table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 9pt; break-inside: avoid; }
+.sabi-report-content th { background: var(--primary); color: #fff; text-align: left; padding: 4px 6px; font-weight: 700; }
+.sabi-report-content td { border: 1px solid #d8ddd8; padding: 4px 6px; vertical-align: top; }
+.sabi-report-content tr:nth-child(even) td { background: #fafbfa; }
+.sabi-report-foot { margin-top: 14px; padding-top: 6px; border-top: 1px solid #d8ddd8; font-size: 8pt; color: #777; }
+
+@page { size: A4; margin: 14mm; }
+@media print {
+  html, body { background: #fff !important; }
+  body > *:not(#sabi-print-root) { display: none !important; }
+  #sabi-print-root { display: block !important; }
+  .sabi-report, .sabi-report * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

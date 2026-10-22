@@ -111,14 +111,27 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const publicRoutes = ["/", "/sign-in", "/sign-up", "/sso-callback"];
-  const isPublicRoute = publicRoutes.includes(location.pathname);
+  const publicRoutes = ["/sign-in", "/sign-up", "/sso-callback"];
+  const isAuthFlowRoute = publicRoutes.some(
+    (r) => location.pathname === r || location.pathname.startsWith(`${r}/`),
+  );
+  const isPublicRoute = location.pathname === "/" || isAuthFlowRoute;
 
   useEffect(() => {
     if (!isLoaded) return;
-    if (isSignedIn && isPublicRoute && location.pathname === "/") {
+    // Signed-in users have no reason to see the landing or login pages.
+    // /sso-callback is excluded so Clerk can finish the Google redirect itself.
+    if (
+      isSignedIn &&
+      (location.pathname === "/" ||
+        location.pathname === "/sign-in" ||
+        location.pathname.startsWith("/sign-in/") ||
+        location.pathname === "/sign-up" ||
+        location.pathname.startsWith("/sign-up/"))
+    ) {
       navigate({ to: "/tools" });
     }
+    // Signed-out users can only see public pages.
     if (!isSignedIn && !isPublicRoute) {
       navigate({ to: "/" });
     }

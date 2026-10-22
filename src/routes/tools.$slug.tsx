@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, Sparkles, Send, Download, Paperclip } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { useState, useRef, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
+import { ReportDocument } from "@/components/ReportDocument";
+const API_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "") || "http://127.0.0.1:8000";
 
 export const Route = createFileRoute("/tools/$slug")({
   head: () => ({
@@ -856,7 +857,7 @@ function ToolDetail() {
     ]);
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000${config.endpoint}`, {
+      const res = await fetch(`${API_URL}${config.endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(buildPayload()),
@@ -1136,9 +1137,13 @@ function ToolDetail() {
                 </div>
               )}
               {output && !loading && (
-  <div className="max-w-[65ch] mx-auto prose prose-sm prose-neutral dark:prose-invert">
-    <ReactMarkdown>{output}</ReactMarkdown>
-  </div>
+  <ReportDocument
+    toolLabel={config.label}
+    markdown={output}
+    details={["grade", "subject", "topic", "curriculum", "duration"]
+      .filter((k) => form[k])
+      .map((k) => ({ label: k.charAt(0).toUpperCase() + k.slice(1), value: form[k] }))}
+  />
 )}
             </div>
           </div>

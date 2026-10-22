@@ -11,17 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as SsoCallbackRouteImport } from './routes/sso-callback'
-import { Route as SignUpRouteImport } from './routes/sign-up'
-import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as RecommendationsRouteImport } from './routes/recommendations'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as ApplicationsRouteImport } from './routes/applications'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
+import { Route as SignUpSplatRouteImport } from './routes/sign-up.$'
+import { Route as SignInSplatRouteImport } from './routes/sign-in.$'
 import { Route as RecommendationsReferRouteImport } from './routes/recommendations.refer'
 import { Route as JobsIdApplyRouteImport } from './routes/jobs.$id.apply'
 
@@ -33,16 +32,6 @@ const ToolsRoute = ToolsRouteImport.update({
 const SsoCallbackRoute = SsoCallbackRouteImport.update({
   id: '/sso-callback',
   path: '/sso-callback',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SignUpRoute = SignUpRouteImport.update({
-  id: '/sign-up',
-  path: '/sign-up',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SignInRoute = SignInRouteImport.update({
-  id: '/sign-in',
-  path: '/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecommendationsRoute = RecommendationsRouteImport.update({
@@ -58,11 +47,6 @@ const ProfileRoute = ProfileRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MarketplaceRoute = MarketplaceRouteImport.update({
-  id: '/marketplace',
-  path: '/marketplace',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JobsRoute = JobsRouteImport.update({
@@ -90,6 +74,16 @@ const ToolsSlugRoute = ToolsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ToolsRoute,
 } as any)
+const SignUpSplatRoute = SignUpSplatRouteImport.update({
+  id: '/sign-up/$',
+  path: '/sign-up/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInSplatRoute = SignInSplatRouteImport.update({
+  id: '/sign-in/$',
+  path: '/sign-in/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecommendationsReferRoute = RecommendationsReferRouteImport.update({
   id: '/refer',
   path: '/refer',
@@ -106,15 +100,14 @@ export interface FileRoutesByFullPath {
   '/applications': typeof ApplicationsRoute
   '/assistant': typeof AssistantRoute
   '/jobs': typeof JobsRouteWithChildren
-  '/marketplace': typeof MarketplaceRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/recommendations': typeof RecommendationsRouteWithChildren
-  '/sign-in': typeof SignInRoute
-  '/sign-up': typeof SignUpRoute
   '/sso-callback': typeof SsoCallbackRoute
   '/tools': typeof ToolsRouteWithChildren
   '/recommendations/refer': typeof RecommendationsReferRoute
+  '/sign-in/$': typeof SignInSplatRoute
+  '/sign-up/$': typeof SignUpSplatRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/jobs/$id/apply': typeof JobsIdApplyRoute
 }
@@ -123,15 +116,14 @@ export interface FileRoutesByTo {
   '/applications': typeof ApplicationsRoute
   '/assistant': typeof AssistantRoute
   '/jobs': typeof JobsRouteWithChildren
-  '/marketplace': typeof MarketplaceRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/recommendations': typeof RecommendationsRouteWithChildren
-  '/sign-in': typeof SignInRoute
-  '/sign-up': typeof SignUpRoute
   '/sso-callback': typeof SsoCallbackRoute
   '/tools': typeof ToolsRouteWithChildren
   '/recommendations/refer': typeof RecommendationsReferRoute
+  '/sign-in/$': typeof SignInSplatRoute
+  '/sign-up/$': typeof SignUpSplatRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/jobs/$id/apply': typeof JobsIdApplyRoute
 }
@@ -141,15 +133,14 @@ export interface FileRoutesById {
   '/applications': typeof ApplicationsRoute
   '/assistant': typeof AssistantRoute
   '/jobs': typeof JobsRouteWithChildren
-  '/marketplace': typeof MarketplaceRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/recommendations': typeof RecommendationsRouteWithChildren
-  '/sign-in': typeof SignInRoute
-  '/sign-up': typeof SignUpRoute
   '/sso-callback': typeof SsoCallbackRoute
   '/tools': typeof ToolsRouteWithChildren
   '/recommendations/refer': typeof RecommendationsReferRoute
+  '/sign-in/$': typeof SignInSplatRoute
+  '/sign-up/$': typeof SignUpSplatRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/jobs/$id/apply': typeof JobsIdApplyRoute
 }
@@ -160,15 +151,14 @@ export interface FileRouteTypes {
     | '/applications'
     | '/assistant'
     | '/jobs'
-    | '/marketplace'
     | '/onboarding'
     | '/profile'
     | '/recommendations'
-    | '/sign-in'
-    | '/sign-up'
     | '/sso-callback'
     | '/tools'
     | '/recommendations/refer'
+    | '/sign-in/$'
+    | '/sign-up/$'
     | '/tools/$slug'
     | '/jobs/$id/apply'
   fileRoutesByTo: FileRoutesByTo
@@ -177,15 +167,14 @@ export interface FileRouteTypes {
     | '/applications'
     | '/assistant'
     | '/jobs'
-    | '/marketplace'
     | '/onboarding'
     | '/profile'
     | '/recommendations'
-    | '/sign-in'
-    | '/sign-up'
     | '/sso-callback'
     | '/tools'
     | '/recommendations/refer'
+    | '/sign-in/$'
+    | '/sign-up/$'
     | '/tools/$slug'
     | '/jobs/$id/apply'
   id:
@@ -194,15 +183,14 @@ export interface FileRouteTypes {
     | '/applications'
     | '/assistant'
     | '/jobs'
-    | '/marketplace'
     | '/onboarding'
     | '/profile'
     | '/recommendations'
-    | '/sign-in'
-    | '/sign-up'
     | '/sso-callback'
     | '/tools'
     | '/recommendations/refer'
+    | '/sign-in/$'
+    | '/sign-up/$'
     | '/tools/$slug'
     | '/jobs/$id/apply'
   fileRoutesById: FileRoutesById
@@ -212,14 +200,13 @@ export interface RootRouteChildren {
   ApplicationsRoute: typeof ApplicationsRoute
   AssistantRoute: typeof AssistantRoute
   JobsRoute: typeof JobsRouteWithChildren
-  MarketplaceRoute: typeof MarketplaceRoute
   OnboardingRoute: typeof OnboardingRoute
   ProfileRoute: typeof ProfileRoute
   RecommendationsRoute: typeof RecommendationsRouteWithChildren
-  SignInRoute: typeof SignInRoute
-  SignUpRoute: typeof SignUpRoute
   SsoCallbackRoute: typeof SsoCallbackRoute
   ToolsRoute: typeof ToolsRouteWithChildren
+  SignInSplatRoute: typeof SignInSplatRoute
+  SignUpSplatRoute: typeof SignUpSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -236,20 +223,6 @@ declare module '@tanstack/react-router' {
       path: '/sso-callback'
       fullPath: '/sso-callback'
       preLoaderRoute: typeof SsoCallbackRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sign-up': {
-      id: '/sign-up'
-      path: '/sign-up'
-      fullPath: '/sign-up'
-      preLoaderRoute: typeof SignUpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sign-in': {
-      id: '/sign-in'
-      path: '/sign-in'
-      fullPath: '/sign-in'
-      preLoaderRoute: typeof SignInRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recommendations': {
@@ -271,13 +244,6 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/marketplace': {
-      id: '/marketplace'
-      path: '/marketplace'
-      fullPath: '/marketplace'
-      preLoaderRoute: typeof MarketplaceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jobs': {
@@ -314,6 +280,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/tools/$slug'
       preLoaderRoute: typeof ToolsSlugRouteImport
       parentRoute: typeof ToolsRoute
+    }
+    '/sign-up/$': {
+      id: '/sign-up/$'
+      path: '/sign-up/$'
+      fullPath: '/sign-up/$'
+      preLoaderRoute: typeof SignUpSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in/$': {
+      id: '/sign-in/$'
+      path: '/sign-in/$'
+      fullPath: '/sign-in/$'
+      preLoaderRoute: typeof SignInSplatRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/recommendations/refer': {
       id: '/recommendations/refer'
@@ -369,14 +349,13 @@ const rootRouteChildren: RootRouteChildren = {
   ApplicationsRoute: ApplicationsRoute,
   AssistantRoute: AssistantRoute,
   JobsRoute: JobsRouteWithChildren,
-  MarketplaceRoute: MarketplaceRoute,
   OnboardingRoute: OnboardingRoute,
   ProfileRoute: ProfileRoute,
   RecommendationsRoute: RecommendationsRouteWithChildren,
-  SignInRoute: SignInRoute,
-  SignUpRoute: SignUpRoute,
   SsoCallbackRoute: SsoCallbackRoute,
   ToolsRoute: ToolsRouteWithChildren,
+  SignInSplatRoute: SignInSplatRoute,
+  SignUpSplatRoute: SignUpSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

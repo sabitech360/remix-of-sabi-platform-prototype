@@ -1,17 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SignUp } from "@clerk/clerk-react";
+import { SignIn } from "@clerk/clerk-react";
 
-export const Route = createFileRoute("/sign-up")({
-  component: SignUpPage,
+export const Route = createFileRoute("/sign-in/$")({
+  component: SignInPage,
 });
 
-function SignUpPage() {
+function SignInPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
-      <SignUp
+      <SignIn
         routing="path"
-        path="/sign-up"
-        signInUrl="/sign-in"
+        path="/sign-in"
+        signUpUrl="/sign-up"
         fallbackRedirectUrl="/tools"
         forceRedirectUrl="/tools"
       />

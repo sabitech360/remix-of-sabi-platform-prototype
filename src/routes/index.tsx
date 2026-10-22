@@ -16,8 +16,8 @@ function Landing() {
     try {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
-        redirectUrl: "http://localhost:8080/sso-callback",
-        redirectUrlComplete: "http://localhost:8080/tools",
+        redirectUrl: `${window.location.origin}/sso-callback`,
+        redirectUrlComplete: `${window.location.origin}/tools`,
       });
     } catch (err) {
       console.error("Google sign in error:", err);
@@ -25,8 +25,9 @@ function Landing() {
   };
 
   const handleEmail = () => {
-    window.location.href = "/sign-up";
+    window.location.href = "/sign-in";
   };
+ 
 
   const handleSignIn = () => {
     window.location.href = "/sign-in";

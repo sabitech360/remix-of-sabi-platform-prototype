@@ -30,6 +30,13 @@ STRICT OUTPUT RULES — follow these without exception:
 - Tables must use proper markdown pipe format
 - Keep language professional, warm, and teacher-friendly
 
+LENGTH AND LAYOUT (the output is printed as a PDF report):
+- The complete output must fit on TWO A4 pages: no more than about 800 words in total.
+- Be concise: short bullet points and compact tables, no long paragraphs, no repetition.
+- Organise the output into clearly titled sections using markdown ## headers.
+- Do not repeat the teacher's name, date or the tool title; the report header already shows them.
+- Never write the document title as a # header; start directly with the first ## section.
+
 Every output must:
 - Be practical and immediately usable in real African classrooms
 - Account for limited resources (limited printing, large classes of 40+ students, mixed ability)
