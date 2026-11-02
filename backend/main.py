@@ -17,6 +17,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def ensure_api_prefix(request, call_next):
+    path = request.scope["path"]
+    if path != "/" and not path.startswith("/api"):
+        request.scope["path"] = "/api" + path
+    return await call_next(request)
+
 client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 SABI_CONTEXT = """
